@@ -19,6 +19,7 @@
       <configuration>
         <datasource-map>
           <unit-entry name="a.xml" value="6a151033-2e89-4ec2-8cf3-084c2a66ea4f" />
+          <unit-entry name="com:studentadministration:resources:hibernate.cfg.xml" />
           <unit-entry name="hibernate.cfg.xml" value="1b2859ce-e28b-419e-8714-4195c1677314" />
         </datasource-map>
         <naming-strategy-map />
@@ -26,7 +27,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">

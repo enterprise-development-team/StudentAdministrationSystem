@@ -1,11 +1,13 @@
-package com.studentadministration.dao;
+package com.studentadministration.service;
 
+import com.studentadministration.dao.ManagerDao;
 import com.studentadministration.model.entity.ManagerEntity;
-import org.hibernate.SessionFactory;
-
 import java.util.List;
 
-public interface ManagerDao {
+public interface ManagerService {
+
+    public void setManagerDao(ManagerDao managerDao);
+
     public void addManager(ManagerEntity managerEntity);
 
     public void updateManager(ManagerEntity managerEntity);
@@ -13,8 +15,6 @@ public interface ManagerDao {
     public List<ManagerEntity> listManager();
 
     public ManagerEntity getManagerById(int id);
-
-    public void setSessionFactory(SessionFactory sf);
 
     public void removeManager(int id);
 }

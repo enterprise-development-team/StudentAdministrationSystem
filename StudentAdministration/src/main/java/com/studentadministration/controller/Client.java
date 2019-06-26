@@ -1,9 +1,5 @@
 package com.studentadministration.controller;
 
-import com.studentadministration.model.ClassBean;
-import com.studentadministration.model.DBUtil;
-import com.studentadministration.model.OptCourseBean;
-import com.studentadministration.model.Permission;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

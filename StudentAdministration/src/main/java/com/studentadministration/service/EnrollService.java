@@ -1,11 +1,9 @@
-package com.studentadministration.dao;
+package com.studentadministration.service;
 
 import com.studentadministration.model.entity.EnrollEntity;
-import org.hibernate.SessionFactory;
-
 import java.util.List;
 
-public interface EnrollDao {
+public interface EnrollService {
     public void addEnroll(EnrollEntity enrollEntity);
 
     public void updateEnroll(EnrollEntity enrollEntity);
@@ -13,8 +11,6 @@ public interface EnrollDao {
     public List<EnrollEntity> listEnroll();
 
     public EnrollEntity getEnrollById(int id);
-
-    public void setSessionFactory(SessionFactory sf);
 
     public void removeEnroll(int id);
 }

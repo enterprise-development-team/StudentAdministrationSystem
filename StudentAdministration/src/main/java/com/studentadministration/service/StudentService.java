@@ -1,11 +1,9 @@
-package com.studentadministration.dao;
+package com.studentadministration.service;
 
 import com.studentadministration.model.entity.StudentEntity;
-import org.hibernate.SessionFactory;
-
 import java.util.List;
 
-public interface StudentDao {
+public interface StudentService {
     public void addStudent(StudentEntity studentEntity);
 
     public void updateStudent(StudentEntity studentEntity);
@@ -13,8 +11,6 @@ public interface StudentDao {
     public List<StudentEntity> listStudent();
 
     public StudentEntity getStudentById(int id);
-
-    public void setSessionFactory(SessionFactory sf);
 
     public void removeStudent(int id);
 }

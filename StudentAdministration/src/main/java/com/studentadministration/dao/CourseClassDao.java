@@ -12,7 +12,9 @@ public interface CourseClassDao {
 
     public List<CourseClassEntity> listCourseClass();
 
-    public void getCourseClassById(int id);
+    public CourseClassEntity getCourseClassById(int id);
 
     public void setSessionFactory(SessionFactory sf);
+
+    public void removeCourseClass(int id);
 }
