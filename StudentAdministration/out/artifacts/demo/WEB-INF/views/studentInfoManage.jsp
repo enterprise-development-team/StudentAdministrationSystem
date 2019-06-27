@@ -1,0 +1,270 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: JIN54
+  Date: 2019/6/26
+  Time: 16:27
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>学生管理系统</title>
+    <script>
+        //给”年“的下拉菜单添加数据
+        function addYear(count) {
+            var now = new Date();
+            var nowYear = now.getFullYear();
+            var objSelectYear = document.getElementById("selYear");
+            for(i = 0; i < count; i++) {
+                objSelectYear.innerHTML += "<option value='" + (nowYear - i) + "'>" + (nowYear - i) + "</option>";
+            }
+        }
+        //给”月“的下拉菜单添加数据
+
+
+        //给”月“的下拉菜单添加数据
+        var arrMonth = new Array("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
+
+
+        //给”月“的下拉菜单添加数据
+        function addMonth() {
+            var objSelectYear = document.getElementById("selYear");
+            var objSelectMonth = document.getElementById("selMonth");
+            objSelectMonth.length = 1;
+            var objSelectDate = document.getElementById("selDate");
+            objSelectDate.length = 1;
+            if(objSelectYear.selectedIndex > 0) {
+                for(i = 0; i < arrMonth.length; i++) {
+                    objSelectMonth.innerHTML += "<option value='" + i + "'>" + arrMonth[i] + "</option>";
+                }
+            }
+        }
+
+
+        //给”日“的下拉菜单添加数据
+        function addDate() {
+            var maxDate;
+            var objSelectDate = document.getElementById("selDate");
+            objSelectDate.length = 1;
+
+
+            var objSelectYear = document.getElementById("selYear");
+            var objSelectMonth = document.getElementById("selMonth");
+
+
+            switch(objSelectMonth.selectedIndex) {
+                case 2:
+                    var index = objSelectYear.selectedIndex;
+                    //          alert(objSelectYear[index].textContent);//获取option对象显示的文本
+                    //          alert(objSelectYear[index].value);//获取option对象的value值
+                    var nowYear = parseInt(objSelectYear[index].value);
+                    if(nowYear % 400 == 0 || (nowYear % 100 != 0 && nowYear % 4 == 0)) { //判断闰年
+                        maxDate = 29;
+                    } else {
+                        maxDate = 28;
+                    }
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    maxDate = 30;
+                    break;
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    maxDate = 31;
+                    break;
+            }
+
+
+            for(i = 1; i <= maxDate; i++) {
+                objSelectDate.innerHTML += "<option value='" + i + "'>" + i + "</option>";
+            }
+        }
+    </script>
+</head>
+<body onload="addYear(50)">
+
+<div style="width: 100%; height: 86px ;background: #4e555b; overflow: hidden;"><h1 style="position: absolute;left: 100px;color: white">学生信息管理系统</h1></div>
+<div style="width: 100%; height: 30px; margin:  0 auto; background: #56666B;overflow: hidden;"></div>
+<div  class="container" >
+    <div class="row" >
+        <div class="col-md-2" style="margin-top: 40px;height:550px;border-right: solid 1px #4e555b">
+            <h4><strong>学生档案信息维护</strong></h4>
+            <br />
+            <ul class=" nav-stacked " style="border-bottom: solid 1px #4e555b">
+                <li><a href="#" style="color: #1b1e21">学生信息管理</a> </li>
+                <br />
+            </ul>
+            <br />
+            <h4><strong>课程管理</strong></h4>
+            <br />
+            <ul class=" nav-stacked " style="border-bottom: solid 1px #4e555b">
+                <li><a href="#" style="color: #1b1e21">管理课程信息</a> </li>
+                <br />
+            </ul>
+            <br />
+        </div>
+        <div class="col-md-10" style="margin-top: 40px;height:550px;">
+            <div class="btn-group col-md-1">
+                <button type="button" class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown">学院
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">学院1</a></li>
+                    <li><a href="#">学院2</a></li>
+                </ul>
+            </div>
+            <div class="btn-group col-md-1">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">专业
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">专业1</a></li>
+                    <li><a href="#">专业2</a></li>
+                </ul>
+            </div>
+            <div class="btn-group col-md-1">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">班级
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">班级1</a></li>
+                    <li><a href="#">班级2</a></li>
+                </ul>
+            </div>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" style="margin-left:20px;">添加</button>
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- 模态框头部 -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">添加学生信息</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- 模态框主体 -->
+                        <div class="modal-body">
+                            <form role="form">
+                                <div class="form-group">
+                                    <label for="name">姓名</label>
+                                    <input type="text" class="form-control" id="name" placeholder="请输入姓名">
+                                </div>
+                                <div class="form-group">
+                                    <label for="year">年级</label>
+                                    <select class="form-control" id="year">
+                                        <option>2019</option>
+                                        <option>2018</option>
+                                        <option>2017</option>
+                                        <option>2016</option>
+                                        <option>2015</option>
+                                    </select>
+                                </div>
+                                <div class="form-group form-inline" style="padding-top:5px;">
+                                    <label for="institute">学院</label>
+                                    <select class="form-control" id="institute">
+                                        <option>信息学院</option>
+                                        <option>化工学院</option>
+                                    </select>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label for="major">专业</label>
+                                    <select class="form-control" id="major">
+                                        <option>软件工程</option>
+                                        <option>计算机</option>
+                                    </select>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label for="class">班级</label>
+                                    <select class="form-control" id="class">
+                                        <option>161</option>
+                                        <option>162</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gender">性别</label>
+                                    <select class="form-control" id="gender">
+                                        <option>男</option>
+                                        <option>女</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="province">省份</label>
+                                    <input type="text" class="form-control" id="province" placeholder="请输入省份">
+                                    <label for="city">城市</label>
+                                    <input type="text" class="form-control" id="city" placeholder="请输入城市">
+                                    <label for="street">街道</label>
+                                    <input type="text" class="form-control" id="street" placeholder="请输入街道">
+                                </div>
+                                <div class="form-group form-inline">
+                                    <label>生日</label>
+                                    <select class="form-control" id="selYear" onchange="addMonth();">
+                                        <option>-- 年 --</option>
+                                    </select>
+                                    <select class="form-control" id="selMonth" onchange="addDate();">
+                                        <option>-- 月 --</option>
+                                    </select>
+                                    <select class="form-control" id="selDate">
+                                        <option>-- 日 --</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- 模态框底部 -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary">提交更改</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 pull-right">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="请输入学号">
+                    <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">搜索</button>
+                        </span>
+                </div><!-- /input-group -->
+            </div>
+            <br>
+            <br>
+            <br>
+            <div id="info" class="col-md-12">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th class="text-center">学号</th>
+                        <th class="text-center">姓名</th>
+                        <th class="text-center">年级</th>
+                        <th class="text-center">班级</th>
+                        <th class="text-center">性别</th>
+                        <th class="text-center">籍贯</th>
+                        <th class="text-center">生日</th>
+                        <th class="text-center">操作</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+</div>
+</body>
+</html>
